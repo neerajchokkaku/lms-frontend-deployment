@@ -12,7 +12,7 @@ function CourseList() {
   }, []);
 
   const fetchData = () => {
-    axios.get("http://localhost:4000/courseRoute")
+    axios.get("https://learning-managment-system-using-mern.onrender.com/courseRoute")
       .then((res) => {
         if (res.status === 200) {
           setArr(res.data);

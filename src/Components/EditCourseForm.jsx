@@ -12,11 +12,11 @@ const EditCourseForm = ({ courseId, onClose, onUpdate }) => {
 
   useEffect(() => {
     
-    axios.get(`https://learning-managment-system-using-mern.onrender.com/courseRoute/update-course/${courseId}`)
+    axios.get(`http://localhost:4000/courseRoute/update-course/${courseId}`)
       .then((res) => {
         if (res.status === 200) {
           
-          setFormData(res.data); // Update form data with the fetched course details
+          setFormData(res.data); 
         } else {
           console.error("Failed to fetch course details.");
         }

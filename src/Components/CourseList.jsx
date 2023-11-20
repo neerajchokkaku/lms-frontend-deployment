@@ -15,7 +15,7 @@ function CourseList() {
   }, []);
 
   const fetchData = () => {
-    axios.get("http://localhost:4000/courseRoute")
+    axios.get("https://learning-managment-system-using-mern.onrender.com/courseRoute")
       .then((res) => {
         if (res.status === 200) {
           setArr(res.data);
@@ -37,7 +37,7 @@ function CourseList() {
   };
 
   const handleDeleteCourse = (courseId) => {
-    axios.delete(`https://learning-managment-system-using-mern.onrender.com/delete-course/${courseId}`)
+    axios.delete(`http://localhost:4000/courseRoute/delete-course/${courseId}`)
       .then((res) => {
         if (res.status === 200) {
           alert("Course deleted successfully!");
