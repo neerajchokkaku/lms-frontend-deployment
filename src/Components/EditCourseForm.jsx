@@ -34,7 +34,7 @@ const EditCourseForm = ({ courseId, onClose, onUpdate }) => {
 
   const handleSubmit = () => {
    
-    axios.put(`https://learning-managment-system-using-mern.onrender.com/update-course/${courseId}`, formData)
+    axios.put(`https://learning-managment-system-using-mern.onrender.com/courseRoute/update-course/${courseId}`, formData)
       .then((res) => {
         if (res.status === 200) {
             alert("course updated succesfully")
