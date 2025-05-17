@@ -14,6 +14,8 @@ import axios from "axios";
 import { FaTrash, FaRupeeSign } from "react-icons/fa";
 import { loadStripe } from "@stripe/stripe-js";
 import '../CSS/Cart.css'; 
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 //const stripePromise = loadStripe("your_publishable_key");
 
@@ -237,8 +239,9 @@ const CartPage = () => {
       }
 
       const response = await axios.get(
-        `https://learning-managment-system-using-mern.onrender.com/cartRoute/user-cart/${userId}`
+        `${API_URL}/cartRoute/user-cart/${userId}`
       );
+      
 
       if (response.data.success) {
         setCartItems(response.data.cartItems);
@@ -254,7 +257,7 @@ const CartPage = () => {
   const handleRemoveFromCart = async (cartItemId) => {
     try {
       const response = await axios.delete(
-        `https://learning-managment-system-using-mern.onrender.com/cartRoute/remove-from-cart/${cartItemId}`
+        `${API_URL}/cartRoute/remove-from-cart/${cartItemId}`
       );
 
       if (response.data.success) {
@@ -278,12 +281,12 @@ const CartPage = () => {
 
       const {
         data: { publishableKey },
-      } = await axios.get("https://learning-managment-system-using-mern.onrender.com/payment/config");
+      } = await axios.get(`${API_URL}/payment/config`);
       const stripe = await loadStripe(publishableKey);
 
       // Create checkout session
       const { data } = await axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/payment/create-checkout-session",
+        `${API_URL}/payment/create-checkout-session`,
         {
           cartItems,
           userId,

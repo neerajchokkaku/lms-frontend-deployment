@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../CSS/AdminProfile.css'
 import { FaUserShield, FaEnvelope, FaClock, FaArrowLeft } from 'react-icons/fa';
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 const AdminProfile = () => {
     const [adminData, setAdminData] = useState(null);
@@ -19,7 +21,7 @@ const AdminProfile = () => {
                     return;
                 }
 
-                const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/adminRoute/profile/${adminId}`);
+                const response = await axios.get(`${API_URL}/adminRoute/profile/${adminId}`);
                 if (response.data.success) {
                     setAdminData(response.data.admin);
                     setLoading(false);

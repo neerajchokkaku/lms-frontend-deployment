@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Axios from "axios";
 import "../CSS/UserRegistration.css";
 
+export const API_URL = process.env.REACT_APP_API_URL;
+
+
 const NewUserForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -78,7 +81,7 @@ const NewUserForm = () => {
 
     try {
       const response = await Axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/userRoute/create-user",
+        `${API_URL}/userRoute/login`,
         { name, email, password, phoneNumber, gender }
       );
 

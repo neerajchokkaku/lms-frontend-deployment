@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../CSS/UserLogin.css';
+export const API_URL = process.env.REACT_APP_API_URL;
+
+
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +33,7 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       const response = await Axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/userRoute/login",
+        `${API_URL}/userRoute/login`,
         { email, password }
       );
 

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { FaCheckCircle } from 'react-icons/fa';
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 const PaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -12,7 +14,7 @@ const PaymentSuccess = () => {
     const updatePaymentStatus = async () => {
       try {
         if (sessionId) {
-          await axios.post('https://learning-managment-system-using-mern.onrender.com/payment/payment-success', {
+          await axios.post(`${API_URL}/payment/payment-success`, {
             sessionId
           });
           // Clear cart from localStorage if you're storing it there

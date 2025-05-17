@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import "../CSS/CourseList.css";
+import { API_URL } from "./Cart";
 
 const Navbar = ({ userName, cartCount }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -235,7 +236,7 @@ function ViewCourse() {
           setUserName(storedName);
         }
 
-        const response = await axios.get("https://learning-managment-system-using-mern.onrender.com/courseRoute");
+        const response = await axios.get(`${API_URL}/courseRoute`);
         console.log("API Response:", response.data);
 
         if (response.data?.courses && Array.isArray(response.data.courses)) {
@@ -285,7 +286,7 @@ function ViewCourse() {
       };
 
       const response = await axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/cartRoute/add-to-cart",
+        `${API_URL}/cartRoute/add-to-cart`,
         cartData
       );
 

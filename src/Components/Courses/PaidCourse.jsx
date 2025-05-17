@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import '../CSS/PaidCourse.css';
+import { API_URL } from "./Cart";
 
 
 const PaidCourse = () => {
@@ -40,7 +41,7 @@ const PaidCourse = () => {
         } else {
           // Fetch user data if name is not in storage
           const userResponse = await axios.get(
-            `https://learning-managment-system-using-mern.onrender.com/userRoute/get-user/${userId}`
+            `${API_URL}/userRoute/get-user/${userId}`
           );
           if (userResponse.data.success) {
             setUserName(userResponse.data.user.name);
@@ -49,7 +50,7 @@ const PaidCourse = () => {
         }
 
         // Fetch purchased courses
-        const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/payment/purchased-courses/${userId}`);
+        const response = await axios.get(`${API_URL}/payment/purchased-courses/${userId}`);
         if (response.data.success) {
           setPurchasedCourses(response.data.courses);
         }
@@ -369,7 +370,7 @@ const CombinedComponent = () => {
       try {
         const userId = localStorage.getItem('userId');
         if (userId) {
-          const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/cart/count/${userId}`);
+          const response = await axios.get(`${API_URL}/cart/count/${userId}`);
           setCartCount(response.data.count);
         }
       } catch (error) {

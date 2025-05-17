@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { BiHome } from 'react-icons/bi';
 import { FaChalkboardTeacher } from 'react-icons/fa';
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 const InstructorRegistration = () => {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ const InstructorRegistration = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(
-        'https://learning-managment-system-using-mern.onrender.com/adminRoute/create-instructor',
+        `${API_URL}/adminRoute/create-instructor`,
         instructorData
       );
 

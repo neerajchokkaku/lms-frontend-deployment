@@ -9,6 +9,7 @@ import {
   FaTimesCircle
 } from 'react-icons/fa';
 import '../CSS/CourseContent.css';
+import { API_URL } from "./Cart";//       console.error("Login error:", error); 
 
 const CourseContent = () => {
   const { courseId } = useParams();
@@ -22,7 +23,7 @@ const CourseContent = () => {
   useEffect(() => {
     const fetchCourseContent = async () => {
       try {
-        const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/courseRoute/content/${courseId}`);
+        const response = await axios.get(`${API_URL}/courseRoute/content/${courseId}`);
         if (response.data.success) {
           setCourseContent(response.data.content);
           if (response.data.content.length > 0) {
@@ -120,7 +121,7 @@ const CourseContent = () => {
             {activeContent.type === 'document' && (
               <div className="document-container">
                 <iframe
-                  src={`https://learning-managment-system-using-mern.onrender.com${activeContent.fileUrl}`}
+                  src={`${API_URL}${activeContent.fileUrl}`}
                   title={activeContent.title}
                   className="document-frame"
                 />

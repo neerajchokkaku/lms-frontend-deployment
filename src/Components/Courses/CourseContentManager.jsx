@@ -11,6 +11,7 @@ import {
   FaEdit
 } from 'react-icons/fa';
 import '../CSS/CourseContentManager.css'
+import { API_URL } from "./Cart";
 
 const CourseContentManager = () => {
   const [courses, setCourses] = useState([]);
@@ -40,7 +41,7 @@ const CourseContentManager = () => {
           return;
         }
 
-        const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/courseRoute/instructor-courses/${instructorId}`);
+        const response = await axios.get(`${API_URL}/courseRoute/instructor-courses/${instructorId}`);
         setCourses(response.data.courses);
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -58,7 +59,7 @@ const CourseContentManager = () => {
 
   const fetchCourseContent = async (courseId) => {
     try {
-      const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/courseRoute/content/${courseId}`);
+      const response = await axios.get(`${API_URL}/courseRoute/content/${courseId}`);
       if (response.data.success) {
         setCourseContent(response.data.content);
       }
@@ -94,8 +95,8 @@ const CourseContentManager = () => {
       }
 
       const endpoint = editingContent 
-        ? `https://learning-managment-system-using-mern.onrender.com/courseRoute/update-content/${editingContent._id}`
-        : `https://learning-managment-system-using-mern.onrender.com/courseRoute/add-content/${selectedCourse._id}`;
+        ? `${API_URL}/courseRoute/update-content/${editingContent._id}`
+        : `${API_URL}/courseRoute/add-content/${selectedCourse._id}`;
 
       const response = await axios.post(endpoint, formData, {
         headers: {
@@ -349,7 +350,7 @@ const CourseContentManager = () => {
 
     try {
       const response = await axios.delete(
-        `https://learning-managment-system-using-mern.onrender.com/courseRoute/delete-content/${contentId}`
+        `${API_URL}/courseRoute/delete-content/${contentId}`
       );
 
       if (response.data.success) {
@@ -456,7 +457,7 @@ const CourseContentManager = () => {
                           )}
                           {item.type === 'document' && (
                             <a 
-                              href={`https://learning-managment-system-using-mern.onrender.com${item.fileUrl}`} 
+                              href={`${API_URL}${item.fileUrl}`} 
                               target="_blank" 
                               rel="noopener noreferrer"
                               className="btn btn-sm btn-outline-primary"

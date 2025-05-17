@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import FreeCourseCard from "../FreeCourseCard";
 import "../CSS/free-course.css";
 
+
 const freeCourseData = [
   {
     id: "01",

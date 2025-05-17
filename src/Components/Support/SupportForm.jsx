@@ -9,6 +9,8 @@ import {
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import "../CSS/SupportForm.css";
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);

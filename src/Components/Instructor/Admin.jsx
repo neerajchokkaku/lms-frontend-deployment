@@ -4,6 +4,7 @@ import Axios from "axios";
 import { BiHome } from "react-icons/bi";
 import { FaUserShield, FaLock, FaEnvelope } from "react-icons/fa";
 import "../CSS/Admin.css";
+import { API_URL } from "../Users/UserLogin";
 
 const styles = {
   container: {
@@ -93,7 +94,7 @@ const Admin = () => {
     e.preventDefault();
     try {
       const response = await Axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/adminRoute/create-instructor",
+        `${API_URL}/adminRoute/create-instructor`,
         instructorData
       );
 
@@ -128,7 +129,7 @@ const Admin = () => {
 
     try {
       const response = await Axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/adminRoute/login",
+        `${API_URL}/adminRoute/login`,
         { email, password }
       );
 

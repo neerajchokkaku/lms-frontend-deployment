@@ -4,6 +4,7 @@ import { FaEdit, FaTrash, FaExclamationTriangle } from 'react-icons/fa';
 import { Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/CourseList.css';
+import { API_URL } from "./Cart"; // Adjust the import path as necessary
 
 const CourseList = () => {
   const [courses, setCourses] = useState([]);
@@ -34,7 +35,7 @@ const CourseList = () => {
       }
 
       // Add instructor ID to the query parameters
-      const response = await axios.get(`https://learning-managment-system-using-mern.onrender.com/courseRoute`, {
+      const response = await axios.get(`${API_URL}/courseRoute`, {
         params: {
           instructor: instructorId
         }
@@ -86,7 +87,7 @@ const CourseList = () => {
 
     if (window.confirm('Are you sure you want to delete this course?')) {
       try {
-        await axios.delete(`https://learning-managment-system-using-mern.onrender.com/courseRoute/delete-course/${courseId}`);
+        await axios.delete(`${API_URL}/courseRoute/delete-course/${courseId}`);
         fetchCourses(); // Refresh the list
         alert('Course deleted successfully');
       } catch (error) {
@@ -118,7 +119,7 @@ const CourseList = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`https://learning-managment-system-using-mern.onrender.com/courseRoute/update-course/${selectedCourse._id}`, editedCourse);
+      await axios.put(`${API_URL}/courseRoute/update-course/${selectedCourse._id}`, editedCourse);
       setShowModal(false);
       fetchCourses(); // Refresh the list
       alert('Course updated successfully');

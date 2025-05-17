@@ -17,6 +17,8 @@ import {
 import { MdDashboard } from "react-icons/md";
 
 import "../CSS/Payment.css";
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 // First, import the Navbar component
 const Navbar = ({ userName }) => {
@@ -236,7 +238,7 @@ const PaymentHistory = () => {
 
         if (userId && !storedName) {
           const response = await axios.get(
-            `https://learning-managment-system-using-mern.onrender.com/userRoute/get-user/${userId}`
+            `${API_URL}/userRoute/get-user/${userId}`
           );
 
           if (response.data.success) {
@@ -266,7 +268,7 @@ const PaymentHistory = () => {
     try {
       const userId = localStorage.getItem("userId");
       const response = await axios.get(
-        `https://learning-managment-system-using-mern.onrender.com/payment/history/${userId}`
+        `${API_URL}/payment/history/${userId}`
       );
       if (response.data.success) {
         setPayments(response.data.payments);
@@ -281,7 +283,7 @@ const PaymentHistory = () => {
   const downloadInvoice = async (paymentId) => {
     try {
       const response = await axios.get(
-        `https://learning-managment-system-using-mern.onrender.com/payment/invoice/${paymentId}`,
+        `${API_URL}/payment/invoice/${paymentId}`,
         { responseType: "blob" }
       );
 

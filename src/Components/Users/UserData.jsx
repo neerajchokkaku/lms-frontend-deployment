@@ -11,6 +11,8 @@ import {
   FaSync,
 } from "react-icons/fa";
 import "../CSS/UserData.css";
+export const API_URL = process.env.REACT_APP_API_URL;
+
 
 const UserData = () => {
   const [purchases, setPurchases] = useState([]);
@@ -30,7 +32,7 @@ const UserData = () => {
         }
 
         const response = await axios.get(
-          `https://learning-managment-system-using-mern.onrender.com/payment/instructor-purchases/${instructorId}`,
+          `${API_URL}/payment/instructor-purchases/${instructorId}`,
           {
             params: { 
               timestamp: Date.now(),

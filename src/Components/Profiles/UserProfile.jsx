@@ -4,6 +4,9 @@ import Axios from 'axios';
 import '../CSS/UserProfile.css';
 import { FaUser, FaEnvelope, FaPhone, FaVenusMars, FaClock, FaArrowLeft } from 'react-icons/fa';
 
+export const API_URL = process.env.REACT_APP_API_URL;
+
+
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -45,7 +48,7 @@ const UserProfile = () => {
         }
 
         const response = await Axios.get(
-          `https://learning-managment-system-using-mern.onrender.com/userRoute/get-user/${userId}`
+          `${API_URL}/userRoute/get-user/${userId}`
         );
 
         if (response.data.success) {

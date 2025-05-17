@@ -3,6 +3,8 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import "../CSS/CourseAddForm.css";
 import Axios from "axios";
+import { API_URL } from "./Cart";
+
 
 const CourseAddForm = () => {
   const navigate = useNavigate();
@@ -43,7 +45,7 @@ const CourseAddForm = () => {
     const fetchInstructors = async () => {
       try {
         const response = await Axios.get(
-          "https://learning-managment-system-using-mern.onrender.com/adminRoute/get-instructors"
+          `${API_URL}/adminRoute/get-instructors`
         );
 
         // Check if the response has the instructors array in the correct format
@@ -110,7 +112,7 @@ const CourseAddForm = () => {
 
     try {
       const response = await Axios.get(
-        `https://learning-managment-system-using-mern.onrender.com/adminRoute/get-instructor/${instructorId}`
+        `${API_URL}/adminRoute/get-instructor/${instructorId}`
       );
 
       if (response.data && response.data.instructor) {
@@ -141,7 +143,7 @@ const CourseAddForm = () => {
       };
 
       const response = await Axios.post(
-        "https://learning-managment-system-using-mern.onrender.com/courseRoute/create-course",
+        `${API_URL}/courseRoute/create-course`,
         submitData
       );
   
