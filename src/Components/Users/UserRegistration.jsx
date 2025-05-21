@@ -81,7 +81,7 @@ const NewUserForm = () => {
 
     try {
       const response = await Axios.post(
-        `${API_URL}/userRoute/login`,
+        `${API_URL}/userRoute/create-user`,
         { name, email, password, phoneNumber, gender }
       );
 

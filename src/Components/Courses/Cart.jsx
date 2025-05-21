@@ -272,36 +272,32 @@ const CartPage = () => {
   const handleCheckout = async () => {
     try {
       const userId = localStorage.getItem("userId");
-
+  
       if (!userId) {
         alert("Please login to proceed with checkout");
         navigate("/user-login");
         return;
       }
-
+  
       const {
         data: { publishableKey },
       } = await axios.get(`${API_URL}/payment/config`);
       const stripe = await loadStripe(publishableKey);
-
+  
       // Create checkout session
       const { data } = await axios.post(
         `${API_URL}/payment/create-checkout-session`,
         {
           cartItems,
           userId,
-          metadata: {
-            userId,
-            courses: cartItems.map((item) => item.course._id),
-          },
         }
       );
-
+  
       if (data.sessionId) {
         const result = await stripe.redirectToCheckout({
           sessionId: data.sessionId,
         });
-
+  
         if (result.error) {
           throw new Error(result.error.message);
         }
@@ -311,7 +307,7 @@ const CartPage = () => {
       alert(error.message || "Payment failed. Please try again.");
     }
   };
-
+  
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
